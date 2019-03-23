@@ -12,6 +12,7 @@ pool:
 steps:
 - task: NodeTool@0
   inputs:
+    azureSubscription: 'senchaprivaterepo'
     versionSpec: '10.x'
   displayName: 'Install Node.js'
 
