@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="tinymce-pkg-tinymce" default="build-tinymce">
+    <!--
+    The build-impl.xml file imported here contains the guts of the build process. It is
+    a great idea to read that file to understand how the process works, but it is best to
+    limit your changes to this file.
+    -->
+    <script language="javascript">
+        <![CDATA[
+            var dir = project.getProperty("basedir"),
+                cmdDir = project.getProperty("cmd.dir"),
+                cmdLoaded = project.getReference("senchaloader");
+            
+            if (!cmdLoaded) {
+                function echo(message, file) {
+                    var e = project.createTask("echo");
+                    e.setMessage(message);
+                    if (file) {
+                        e.setFile(file);
+                    }
+                    e.execute();
+                };
+
+                if (!cmdDir) {
+                    
+                    function exec(args) {
+                        var process = java.lang.Runtime.getRuntime().exec(args),
+                            input = new java.io.BufferedReader(new java.io.InputStreamReader(process.getInputStream())),
+                            headerFound = false,
+                            line;
+
+                        while (line = input.readLine()) {
+                            line = line + '';
+                            java.lang.System.out.println(line);
+                            if (line.indexOf("Sencha Cmd") > -1) {
+                                headerFound = true;
+                            }
+                            else if (headerFound && !cmdDir) {
+                                cmdDir = line;
+                                project.setProperty("cmd.dir", cmdDir);
+                            }
+                        }
+                        process.waitFor();
+                        return !!cmdDir;
+                    }
+                    
+                    if (!exec(["sencha", "which"])) {
+                        var tmpFile = "tmp.sh";
+                        echo("source ~/.bash_profile; sencha " + whichArgs.join(" "), tmpFile);
+                        exec(["/bin/sh", tmpFile]);
+                        new java.io.File(tmpFile)['delete'](); 
+                    }
+                }
+            }
+            
+            if (cmdDir && !project.getTargets().containsKey("init-cmd")) {
+                var importTask = project.createTask("import");
+                importTask.setOwningTarget(self.getOwningTarget());
+                importTask.setLocation(self.getLocation());
+                importTask.setFile(cmdDir + "/ant/build/package/build-impl.xml");
+                importTask.execute();
+            }
+        ]]>
+    </script>
+
+   <property 
+       name="PackageName"
+       value="extjs-pkg-tinymce" />
+   
+   <property 
+       name="TinyMceVersion"
+       value="4.8.2" />
+   
+   <target name="build-tinymce"
+           description="Build the TinyMCE Editor Package"
+           depends="init">
+           
+      <echo message="Building app package    : TinyMCE"/>
+      <echo message="Output Directory        : ${package.dir}"/>
+      
+      <mkdir dir="resources"/>
+
+      <copy todir="resources" verbose="true" includeEmptyDirs="false" overwrite="true" >
+        <fileset dir="mce-release\${TinyMceVersion}">
+            <include name="*\**"/>
+        </fileset>
+      </copy>
+      
+      <x-sencha-command inheritall="false">
+          package 
+             build
+      </x-sencha-command>
+      
+      <x-sencha-command inheritall="false">
+           package
+               add 
+                  ${workspace.dir}\build\tinymce\tinymce.pkg
+      </x-sencha-command>
+      
+      <delete includeemptydirs="true" verbose="true" dir="${workspace.dir}\..\build\temp" />
+      
+      <!--
+      <copy todir="\\192.168.68.140\d$\GEMS 2 Server-0\extjs\pkgs" verbose="true" includeEmptyDirs="false" >
+          <fileset dir="${cmd.dir}\..\repo\pkgs" />
+      </copy>
+      -->
+      
+   </target>
+
+</project>

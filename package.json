@@ -1,0 +1,161 @@
+{
+	"name": "extjs-pkg-tinymce",
+	"displayName": "ExtJs Server TinyMCE Package",
+	"description": "ExtJS 6 TinyMCE Package",
+	"publisher": "spmeesseman",
+	"version": "1.0.0",
+	"icon": "images/subversion.png",
+	"homepage": "https://github.com/spmeesseman/extjs-pkg-tinymce/blob/master/README.md",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/spmeesseman/extjs-pkg-tinymce.git"
+	},
+	"bugs": {
+		"url": "https://github.com/spmeesseman/extjs-pkg-tinymce/issues"
+	},
+	"dependencies": {
+		"@sencha/ext": "~6.7.0",
+		"@sencha/ext-classic": "~6.7.0",
+		"@sencha/ext-classic-theme-base": "^6.7.0",
+		"@sencha/ext-classic-theme-classic": "~6.7.0",
+		"@sencha/ext-classic-theme-crisp": "^6.7.0",
+		"@sencha/ext-classic-theme-graphite": "^6.7.0",
+		"@sencha/ext-classic-theme-neptune": "^6.7.0",
+		"@sencha/ext-classic-theme-triton": "^6.7.0",
+		"@sencha/ext-modern": "~6.7.0",
+		"@sencha/ext-modern-theme-neptune": "^6.7.0",
+		"@sencha/ext-modern-theme-triton": "^6.7.0",
+		"@sencha/ext-modern-theme-ios": "^6.7.0",
+		"@sencha/ext-modern-theme-material": "^6.7.0"
+	},
+	"devDependencies": {
+		"@semantic-release/changelog": "^3.0.2",
+		"@semantic-release/git": "^7.0.8",
+		"@semantic-release/exec": "^3.3.0",
+		"commitizen": "^3.0.7",
+		"cz-conventional-changelog": "^2.1.0",
+		"semantic-release": "^15.13.3",
+		"@types/node": "^10.12.21",
+		"@types/mocha": "^2.2.42"
+	},
+	"scripts": {
+		"install2": "npm run install",
+		"build": "npx sencha package build",
+		"ant-build": "ant -logger org.apache.tools.ant.listener.AnsiColorLogger build-tinymce",
+		"repo-release": "npx sencha package add build\\tinymce\\tinymce.pkg",
+		"semantic-release": "semantic-release --no-ci",
+		"semantic-release-dry": "semantic-release --dry-run"
+	},
+	"config": {
+		"commitizen": {
+			"path": "cz-conventional-changelog"
+		}
+	},
+	"release": {
+		"preset": "angular",
+		"plugins": [
+			[
+				"@semantic-release/commit-analyzer",
+				{
+					"releaseRules": [
+						{
+							"type": "docs",
+							"scope": "README",
+							"release": "patch"
+						},
+						{
+							"type": "refactor",
+							"release": "patch"
+						},
+						{
+							"type": "style",
+							"release": "patch"
+						}
+					],
+					"parserOpts": {
+						"noteKeywords": [
+							"BREAKING CHANGE",
+							"BREAKING CHANGES"
+						]
+					}
+				}
+			],
+			"@semantic-release/release-notes-generator",
+			[
+				"@semantic-release/changelog",
+				{
+					"changelogTitle": "Change Log"
+				}
+			],
+			[
+				"@semantic-release/npm",
+				{
+					"npmPublish": false
+				}
+			],
+			[
+				"@semantic-release/github",
+				{
+					"assets": [
+						"install/dist/**"
+					]
+				}
+			],
+			"@semantic-release/git"
+		]
+	},
+	"sencha": {
+		"namespace": "Ext",
+		"type": "code",
+		"creator": "smeesseman",
+		"summary": "Package wrapper for TinyMCE",
+		"detailedDescription": "Package wrapper for Tiny Moxiecode Content Editor",
+		"version": "4.8.2.2",
+		"compatVersion": "4.2.0",
+		"format": "1",
+		"slicer": {},
+		"output": "${package.dir}/build",
+		"local": true,
+		"resource": {
+			"paths": ""
+		},
+		"resources": [
+			{
+				"path": "${package.dir}/resources",
+				"output": "base"
+			}
+		],
+		"sass": {
+			"namespace": "Ext",
+			"etc": [
+				"${package.dir}/sass/var"
+			],
+			"var": [
+				"${package.dir}/sass/var"
+			],
+			"src": [
+				"${package.dir}/sass/src",
+				"${package.dir}/sass/src/main.scss"
+			]
+		},
+		"classpath": [
+			"${package.dir}/src"
+		],
+		"overrides": [
+			"${package.dir}/overrides"
+		],
+		"requires": [
+			"core"
+		],
+		"ignore": [
+			"(^|/)CVS(/?$|/.*?$)"
+		],
+		"framework": "ext",
+		"builds": {
+			"triton": {
+				"toolkit": "classic",
+				"theme": "theme-triton"
+			}
+		}
+	}
+}

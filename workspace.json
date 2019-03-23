@@ -1,0 +1,43 @@
+{
+  /**
+     * An object containing key value pair framework descriptors.
+     * 
+     * The value can be a string or an object containing at least one of "dir" or "pkg",
+     * where "dir" can be a filesystem path to the framework sources and "pkg" can be a 
+     * package name. For example:
+     *
+     *      "frameworks": {
+     *          
+     *          "ext-x": "/absolute/path/to/ext",
+     *          "ext-y": {
+     *              "source": "../relative/path/to/ext",
+     *              "path": "ext"
+     *          },
+     *          "ext-z": {
+     *              "package": "ext@n.n.n",
+     *              "path": "ext-n.n.n"
+     *          },
+     *          "touch": "touch"
+     *      }
+     *
+     */
+  "frameworks": {
+    "ext": "node_modules/@sencha/ext"
+  },
+  /**
+     * This is the folder for build outputs in the workspace.
+     */
+  "build": {
+    "dir": "${package.dir}/build"
+  },
+  /**
+     * These configs determine where packages are generated and extracted to (when downloaded).
+     */
+  "packages": {
+    /**
+    * This folder contains all local packages.
+    * If a comma-separated string is used as value the first path will be used as the path to generate new packages.
+    */
+    "dir": "${package.dir}/packages/local,${package.dir}/packages,${package.dir}/node_modules/@sencha/ext-${toolkit.name},${package.dir}/node_modules/@sencha/ext-${toolkit.name}-treegrid,${package.dir}/node_modules/@sencha/ext-${toolkit.name}-theme-base,${package.dir}/node_modules/@sencha/ext-${toolkit.name}-theme-ios,${package.dir}/node_modules/@sencha/ext-${toolkit.name}-theme-material,${package.dir}/node_modules/@sencha/ext-${toolkit.name}-theme-aria,${package.dir}/node_modules/@sencha/ext-${toolkit.name}-theme-neutral,${package.dir}/node_modules/@sencha/ext-${toolkit.name}-theme-classic,${package.dir}/node_modules/@sencha/ext-${toolkit.name}-theme-gray,${package.dir}/node_modules/@sencha/ext-${toolkit.name}-theme-crisp,${package.dir}/node_modules/@sencha/ext-${toolkit.name}-theme-crisp-touch,${package.dir}/node_modules/@sencha/ext-${toolkit.name}-theme-neptune,${package.dir}/node_modules/@sencha/ext-${toolkit.name}-theme-neptune-touch,${package.dir}/node_modules/@sencha/ext-${toolkit.name}-theme-triton,${package.dir}/node_modules/@sencha/ext-${toolkit.name}-theme-graphite,${package.dir}/node_modules/@sencha/ext-calendar,${package.dir}/node_modules/@sencha/ext-charts,${package.dir}/node_modules/@sencha/ext-d3,${package.dir}/node_modules/@sencha/ext-exporter,${package.dir}/node_modules/@sencha/ext-pivot,${package.dir}/node_modules/@sencha/ext-pivot-d3,${package.dir}/node_modules/@sencha/ext-ux,${package.dir}/node_modules/@sencha/ext-calendar,${package.dir}/node_modules/@sencha/ext-google"
+  }
+}
