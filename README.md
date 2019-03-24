@@ -17,6 +17,8 @@
 
 ## Install
 
+To install this package, run the following command:
+
 > npm install extjs-pkg-tinymce
 
 ## Usage
