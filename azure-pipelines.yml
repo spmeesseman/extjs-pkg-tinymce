@@ -42,7 +42,7 @@ jobs:
           #customCommand: # Required when command == Custom
           #customRegistry: 'useNpmrc' # Optional. Options: useNpmrc, useFeed
           #customFeed: 'h'
-          customEndpoint: 'senchaprivaterepo'
+          customEndpoint: 'privatesencharepo'
           #publishRegistry: 'useExternalRegistry' # Optional. Options: useExternalRegistry, useFeed
           #publishFeed: # Required when publishRegistry == UseFeed
           #publishPackageMetadata: true # Optional
