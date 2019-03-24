@@ -24,7 +24,7 @@ trigger:
 jobs:
   - job: Windows
     pool:
-      name: Hosted VS2017
+      vmImage: 'vs2017-win2016'
       demands: npm
     steps:
       - task: NodeTool@0
