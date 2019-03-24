@@ -40,18 +40,20 @@ jobs:
         inputs:
           versionSpec: 8.x
       - task: Npm@1
+        displayName: 'Install dependencies'
         inputs:
-        #command: 'install' # Options: install, publish, custom
-        #workingDir: # Optional
-        #verbose: # Optional
-        #customCommand: # Required when command == Custom
-        customRegistry: 'useNpmrc' # Optional. Options: useNpmrc, useFeed
-        #customFeed: 'h'
-        #customEndpoint: # Optional
-        #publishRegistry: 'useExternalRegistry' # Optional. Options: useExternalRegistry, useFeed
-        #publishFeed: # Required when publishRegistry == UseFeed
-        #publishPackageMetadata: true # Optional
-        #publishEndpoint: # Required when publishRegistry == UseExternalRegistry
+          verbose: true
+          #command: 'install' # Options: install, publish, custom
+          #workingDir: # Optional
+          #verbose: # Optional
+          #customCommand: # Required when command == Custom
+          #customRegistry: 'useNpmrc' # Optional. Options: useNpmrc, useFeed
+          #customFeed: 'h'
+          #customEndpoint: # Optional
+          #publishRegistry: 'useExternalRegistry' # Optional. Options: useExternalRegistry, useFeed
+          #publishFeed: # Required when publishRegistry == UseFeed
+          #publishPackageMetadata: true # Optional
+          #publishEndpoint: # Required when publishRegistry == UseExternalRegistry
       #- task: Npm@1
         #displayName: 'Install dependencies'
         #inputs:
