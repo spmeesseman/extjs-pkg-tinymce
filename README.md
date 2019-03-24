@@ -17,7 +17,7 @@
 
 ## Install
 
-> npm install @spmeesseman/extjs-pkg-tinymce
+> npm install extjs-pkg-tinymce
 
 ## Usage
 
@@ -31,4 +31,10 @@ To include the package in an ExtJS application build, be sure to add the package
          "extjs-pkg-tinymce",
         ...
     ]
+
+Also add the node_modules path to the workspace.json packages path array:
+
+     "packages": {
+        "dir": "...${package.dir}/node_modules/extjs-pkg-tinymce"
+    }
 
