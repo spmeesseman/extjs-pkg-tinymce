@@ -35,14 +35,14 @@ jobs:
         displayName: 'Install dependencies'
         inputs:
           verbose: true
-          azureSubscription: 'senchaprivaterepo'
+          #azureSubscription: 'senchaprivaterepo'
           #command: 'install' # Options: install, publish, custom
           #workingDir: # Optional
           #verbose: # Optional
           #customCommand: # Required when command == Custom
           #customRegistry: 'useNpmrc' # Optional. Options: useNpmrc, useFeed
           #customFeed: 'h'
-          #customEndpoint: # Optional
+          customEndpoint: 'senchaprivaterepo'
           #publishRegistry: 'useExternalRegistry' # Optional. Options: useExternalRegistry, useFeed
           #publishFeed: # Required when publishRegistry == UseFeed
           #publishPackageMetadata: true # Optional
