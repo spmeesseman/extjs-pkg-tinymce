@@ -32,7 +32,7 @@ To include the package in an ExtJS application build, be sure to add the package
         ...
     ]
 
-Also add the node_modules path to the workspace.json packages path array:
+For an open tooling build, also add the node_modules path to the workspace.json packages path array:
 
      "packages": {
         "dir": "...${package.dir}/node_modules/extjs-pkg-tinymce"
