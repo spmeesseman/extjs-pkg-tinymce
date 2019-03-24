@@ -40,3 +40,10 @@ For an open tooling build, also add the node_modules path to the workspace.json 
         "dir": "...${package.dir}/node_modules/extjs-pkg-tinymce"
     }
 
+## Other ExtJs packages and builds by spmeesseman
+
+extjs-server-net
+extjs-pkg-fontawesome
+extjs-pkg-theme-graphite-small
+extjs-pkg-theme-amethyst
+
