@@ -43,6 +43,7 @@ jobs:
         displayName: 'Install dependencies'
         inputs:
           verbose: true
+          azureSubscription: 'senchaprivaterepo'
           #command: 'install' # Options: install, publish, custom
           #workingDir: # Optional
           #verbose: # Optional
