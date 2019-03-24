@@ -3,7 +3,7 @@
 	"displayName": "ExtJs Server TinyMCE Package",
 	"description": "ExtJS 6 TinyMCE Package",
 	"publisher": "spmeesseman",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"icon": "images/subversion.png",
 	"homepage": "https://github.com/spmeesseman/extjs-pkg-tinymce/blob/master/README.md",
 	"repository": {
@@ -73,66 +73,67 @@
 		}
 	},
 	"release": {
-        "plugins": [
-            [
-                "@semantic-release/commit-analyzer",
-                {
-                    "preset": "angular",
-                    "releaseRules": [
-                        {
-                            "type": "docs",
-                            "scope": "readme",
-                            "release": "patch"
-                        },
-                        {
-                            "type": "refactor",
-                            "release": "patch"
-                        },
-                        {
-                            "type": "style",
-                            "release": "patch"
-                        }
-                    ],
-                    "parserOpts": {
-                        "noteKeywords": [
-                            "BREAKING CHANGE",
-                            "BREAKING CHANGES"
-                        ]
-                    }
-                }
-            ],
-            "@semantic-release/release-notes-generator",
-            "@semantic-release/changelog",
-            "@semantic-release/npm",
-            "@semantic-release/github",
-            "@semantic-release/git"
-        ],
-        "verifyConditions": [
-            "@semantic-release/github",
-            "@semantic-release/git",
-            "@semantic-release/changelog"
-        ],
-        "prepare": [
-            "@semantic-release/npm",
-            "@semantic-release/changelog",
-            {
-                "path": "@semantic-release/git",
-                "assets": [
-                    "CHANGELOG.md",
-                    "package.json",
-                    "package-lock.json"
-                ],
-                "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
-            }
-        ],
-        "publish": [
+		"plugins": [
 			[
-            "@semantic-release/npm",
-            {
-                "assets": "build/extjs-pkg-tinymce/extjs-pkg-tinymce.pkg"
-            }]
-        ]
-    },
+				"@semantic-release/commit-analyzer",
+				{
+					"preset": "angular",
+					"releaseRules": [
+						{
+							"type": "docs",
+							"scope": "readme",
+							"release": "patch"
+						},
+						{
+							"type": "refactor",
+							"release": "patch"
+						},
+						{
+							"type": "style",
+							"release": "patch"
+						}
+					],
+					"parserOpts": {
+						"noteKeywords": [
+							"BREAKING CHANGE",
+							"BREAKING CHANGES"
+						]
+					}
+				}
+			],
+			"@semantic-release/release-notes-generator",
+			"@semantic-release/changelog",
+			"@semantic-release/npm",
+			"@semantic-release/github",
+			"@semantic-release/git"
+		],
+		"verifyConditions": [
+			"@semantic-release/github",
+			"@semantic-release/git",
+			"@semantic-release/changelog"
+		],
+		"prepare": [
+			"@semantic-release/npm",
+			"@semantic-release/changelog",
+			{
+				"path": "@semantic-release/git",
+				"assets": [
+					"CHANGELOG.md",
+					"package.json",
+					"package-lock.json"
+				],
+				"message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+			}
+		],
+		"publish": [
+			[
+				"@semantic-release/npm",
+				{
+					"assets": "build/extjs-pkg-tinymce/extjs-pkg-tinymce.pkg"
+				}
+			]
+		]
+	},
 	"sencha": {
 		"namespace": "Ext",
 		"type": "code",
