@@ -22,6 +22,45 @@ trigger:
 # 
 
 jobs:
+  - job: Windows
+    pool:
+      name: Hosted VS2017
+      demands: npm
+    steps:
+      - task: NodeTool@0
+        displayName: 'Use Node 8.x'
+        inputs:
+          versionSpec: 8.x
+      - task: Npm@1
+        displayName: 'Install dependencies'
+        inputs:
+          verbose: false
+          customEndpoint: 'privatesencharepo'
+      - task: Npm@1
+        displayName: 'Compile sources'
+        inputs:
+          command: custom
+          verbose: true
+          customCommand: 'run build'
+      - bash: sed -i.bak 's/"\*"//g' package.json
+        displayName: 'Enable full coverage'
+      - task: PublishTestResults@2
+        displayName: 'Publish Test Results'
+        inputs:
+          testResultsFormat: 'JUnit'
+          testResultsFiles: 'test-reports/*.xml'
+          mergeTestResults: true
+          testRunTitle: '$(Agent.OS) $(Agent.JobName)'
+      - task: PublishCodeCoverageResults@1
+        displayName: 'Publish Code Coverage to Azure'
+        inputs:
+          codeCoverageTool: Cobertura
+          summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'
+          reportDirectory: '$(System.DefaultWorkingDirectory)/coverage/lcov-report'
+      - script: node_modules/.bin/codecov --disable=gcov
+        displayName: 'Publish Code Coverage to Codecov'
+        env:
+          CODECOV_TOKEN: $(codecovToken)
   - job: Linux
     pool:
       name: Hosted Ubuntu 1604
@@ -35,28 +74,12 @@ jobs:
         displayName: 'Install dependencies'
         inputs:
           verbose: false
-          #azureSubscription: 'senchaprivaterepo'
-          #command: 'install' # Options: install, publish, custom
-          #workingDir: # Optional
-          #verbose: # Optional
-          #customCommand: # Required when command == Custom
-          #customRegistry: 'useNpmrc' # Optional. Options: useNpmrc, useFeed
-          #customFeed: 'h'
           customEndpoint: 'privatesencharepo'
-          #publishRegistry: 'useExternalRegistry' # Optional. Options: useExternalRegistry, useFeed
-          #publishFeed: # Required when publishRegistry == UseFeed
-          #publishPackageMetadata: true # Optional
-          #publishEndpoint: # Required when publishRegistry == UseExternalRegistry
-      #- task: Npm@1
-        #displayName: 'Install dependencies'
-        #inputs:
-        #  verbose: false
-        #  azureSubscription: 'senchaprivaterepo'
       - task: Npm@1
         displayName: 'Compile sources'
         inputs:
           command: custom
-          verbose: false
+          verbose: true
           customCommand: 'run build'
       - script: |
           set -e
@@ -85,6 +108,7 @@ jobs:
   - job: Release
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
     dependsOn:
+    - Windows
     - Linux
     pool:
       name: Hosted Ubuntu 1604
