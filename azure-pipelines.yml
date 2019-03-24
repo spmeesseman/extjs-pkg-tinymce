@@ -75,12 +75,12 @@ jobs:
           versionSpec: '8' 
           jdkArchitectureOption: x64
           jdkSourceOption: localDirectory
-          #jdkFile: # Required when jdkSourceOption == LocalDirectory
+          jdkFile: 'java/jre.zip'
           #azureResourceManagerEndpoint: # Required when jdkSourceOption == AzureStorage
           #azureStorageAccountName: # Required when jdkSourceOption == AzureStorage
           #azureContainerName: # Required when jdkSourceOption == AzureStorage
           #azureCommonVirtualFile: # Required when jdkSourceOption == AzureStorage
-          jdkDestinationDirectory: 
+          jdkDestinationDirectory: 'java/jre'
           #cleanDestinationDirectory: true 
       - task: Npm@1
         displayName: 'Install dependencies'
