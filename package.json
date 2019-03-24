@@ -29,14 +29,28 @@
 		"@sencha/ext-modern-theme-material": "^6.7.0"
 	},
 	"devDependencies": {
+		"@types/glob": "^7.1.1",
+		"@types/istanbul": "^0.4.30",
+		"@types/mocha": "^5.2.6",
+		"@types/node": "^11.11.3",
+		"@types/semver": "^5.5.0",
+		"@types/tmp": "0.0.34",
+		"@types/xml2js": "^0.4.3",
 		"@semantic-release/changelog": "^3.0.2",
 		"@semantic-release/git": "^7.0.8",
 		"@semantic-release/exec": "^3.3.0",
+		"codecov": "^3.2.0",
 		"commitizen": "^3.0.7",
 		"cz-conventional-changelog": "^2.1.0",
-		"semantic-release": "^15.13.3",
-		"@types/node": "^11.11.6",
-		"@types/mocha": "^5.2.6"
+		"decache": "^4.5.1",
+		"glob": "^7.1.2",
+		"iconv-lite": "^0.4.23",
+		"istanbul": "^0.4.5",
+		"jschardet": "^2.1.0",
+		"mocha": "^6.0.2",
+		"mocha-junit-reporter": "^1.18.0",
+		"remap-istanbul": "^0.13.0",
+		"semantic-release": "^15.13.3"
 	},
 	"scripts": {
 		"install2": "npm run install",
@@ -87,17 +101,12 @@
 					"changelogTitle": "Change Log"
 				}
 			],
-			[
-				"@semantic-release/npm",
-				{
-					"npmPublish": false
-				}
-			],
+			"@semantic-release/npm",
 			[
 				"@semantic-release/github",
 				{
 					"assets": [
-						"install/dist/**"
+						"build/extjs-pkg-tinymce/**"
 					]
 				}
 			],
