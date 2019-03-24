@@ -21,11 +21,11 @@
 
 ## Usage
 
-The main javascript:
+The TinyMCE editor is included at:
 
     mce-release\version
 
-To include the package in the build, be sure to add the package name to the list of required packages in the ExtJS client application's app.json file:
+To include the package in an ExtJS application build, be sure to add the package name to the list of required packages in the app.json file:
 
     "requires": [
          "extjs-pkg-tinymce",
