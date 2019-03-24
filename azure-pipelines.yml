@@ -22,48 +22,9 @@ trigger:
 # 
 
 jobs:
-  #- job: Windows
-  #  pool:
-  #    name: Hosted VS2017
-  #    demands: npm
-  #  steps:
-  #    - task: NodeTool@0
-  #      displayName: 'Use Node 8.x'
-  #      inputs:
-  #        versionSpec: 8.x
-  #    - task: Npm@1
-  #      displayName: 'Install dependencies'
-  #      inputs:
-  #        verbose: false
-  #        customEndpoint: 'privatesencharepo'
-  #    - task: Npm@1
-  #      displayName: 'Compile sources'
-  #      inputs:
-  #        command: custom
-  #        verbose: true
-  #        customCommand: 'run build'
-  #    - bash: sed -i.bak 's/"\*"//g' package.json
-  #      displayName: 'Enable full coverage'
-  #    - task: PublishTestResults@2
-  #      displayName: 'Publish Test Results'
-  #      inputs:
-  #        testResultsFormat: 'JUnit'
-  #        testResultsFiles: 'test-reports/*.xml'
-  #        mergeTestResults: true
-  #        testRunTitle: '$(Agent.OS) $(Agent.JobName)'
-  #    - task: PublishCodeCoverageResults@1
-  #      displayName: 'Publish Code Coverage to Azure'
-  #      inputs:
-  #        codeCoverageTool: Cobertura
-  #        summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'
-  #        reportDirectory: '$(System.DefaultWorkingDirectory)/coverage/lcov-report'
-  #    #- script: node_modules/.bin/codecov --disable=gcov
-  #      #displayName: 'Publish Code Coverage to Codecov'
-  #      #env:
-  #      #  CODECOV_TOKEN: $(codecovToken)
-  - job: Linux
+  - job: Windows
     pool:
-      name: Hosted Ubuntu 1604
+      name: Hosted VS2017
       demands: npm
     steps:
       - task: NodeTool@0
@@ -76,12 +37,7 @@ jobs:
           jdkArchitectureOption: x64
           jdkSourceOption: localDirectory
           jdkFile: 'java/jre.zip'
-          #azureResourceManagerEndpoint: # Required when jdkSourceOption == AzureStorage
-          #azureStorageAccountName: # Required when jdkSourceOption == AzureStorage
-          #azureContainerName: # Required when jdkSourceOption == AzureStorage
-          #azureCommonVirtualFile: # Required when jdkSourceOption == AzureStorage
           jdkDestinationDirectory: 'java/jre'
-          #cleanDestinationDirectory: true 
       - task: Npm@1
         displayName: 'Install dependencies'
         inputs:
@@ -93,11 +49,6 @@ jobs:
           command: custom
           verbose: true
           customCommand: 'run build'
-      - script: |
-          set -e
-          /usr/bin/Xvfb :10 -ac >> /tmp/Xvfb.out 2>&1 &
-          disown -ar
-        displayName: 'Start xvfb'
       - bash: sed -i.bak 's/"\*"//g' package.json
         displayName: 'Enable full coverage'
       - task: PublishTestResults@2
@@ -113,15 +64,66 @@ jobs:
           codeCoverageTool: Cobertura
           summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'
           reportDirectory: '$(System.DefaultWorkingDirectory)/coverage/lcov-report'
-      - script: node_modules/.bin/codecov --disable=gcov
-        displayName: 'Publish Code Coverage to Codecov'
-        env:
-          CODECOV_TOKEN: $(codecovToken)
+      #- script: node_modules/.bin/codecov --disable=gcov
+        #displayName: 'Publish Code Coverage to Codecov'
+        #env:
+        #  CODECOV_TOKEN: $(codecovToken)
+  #- job: Linux
+  #  pool:
+  #    name: Hosted Ubuntu 1604
+  #    demands: npm
+  #  steps:
+  #    - task: NodeTool@0
+  #      displayName: 'Use Node 8.x'
+  #      inputs:
+  #        versionSpec: 8.x
+  #    - task: JavaToolInstaller@0
+  #      inputs:
+  #        versionSpec: '8' 
+  #        jdkArchitectureOption: x64
+  #        jdkSourceOption: localDirectory
+  #        jdkFile: 'java/jre.zip'
+  #        jdkDestinationDirectory: 'java/jre'
+  #    - task: Npm@1
+  #      displayName: 'Install dependencies'
+  #      inputs:
+  #        verbose: false
+  #        customEndpoint: 'privatesencharepo'
+  #    - task: Npm@1
+  #      displayName: 'Compile sources'
+  #      inputs:
+  #        command: custom
+  #        verbose: true
+  #        customCommand: 'run build'
+  #    - script: |
+  #        set -e
+  #        /usr/bin/Xvfb :10 -ac >> /tmp/Xvfb.out 2>&1 &
+  #        disown -ar
+  #      displayName: 'Start xvfb'
+  #    - bash: sed -i.bak 's/"\*"//g' package.json
+  #      displayName: 'Enable full coverage'
+  #    - task: PublishTestResults@2
+  #      displayName: 'Publish Test Results'
+  #      inputs:
+  #        testResultsFormat: 'JUnit'
+  #        testResultsFiles: 'test-reports/*.xml'
+  #        mergeTestResults: true
+  #        testRunTitle: '$(Agent.OS) $(Agent.JobName)'
+  #    - task: PublishCodeCoverageResults@1
+  #      displayName: 'Publish Code Coverage to Azure'
+  #      inputs:
+  #        codeCoverageTool: Cobertura
+  #        summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'
+  #        reportDirectory: '$(System.DefaultWorkingDirectory)/coverage/lcov-report'
+  #    - script: node_modules/.bin/codecov --disable=gcov
+  #      displayName: 'Publish Code Coverage to Codecov'
+  #      env:
+  #        CODECOV_TOKEN: $(codecovToken)
   - job: Release
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
     dependsOn:
-    #- Windows
-    - Linux
+    - Windows
+    #- Linux
     pool:
       name: Hosted Ubuntu 1604
       demands: npm
