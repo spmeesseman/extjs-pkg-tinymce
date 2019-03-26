@@ -4,7 +4,10 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
-- master
+  branches:
+    include:
+    - master
+    - greenkeeper/*
 # 
 # pool:
 #   vmImage: 'Ubuntu-16.04'
@@ -31,13 +34,6 @@ jobs:
         displayName: 'Use Node 8.x'
         inputs:
           versionSpec: 8.x
-      - task: JavaToolInstaller@0
-        inputs:
-          versionSpec: '8' 
-          jdkArchitectureOption: x64
-          jdkSourceOption: localDirectory
-          jdkFile: 'java/jre.zip'
-          jdkDestinationDirectory: 'java/jre/bin'
       - task: Npm@1
         displayName: 'Install dependencies'
         inputs:
