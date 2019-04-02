@@ -9,7 +9,7 @@
 
 ## Description
 
-> This package provides an ExtJS wrapper for the TinyMCE wysiwyg editor.  Currently including v4.8.2.
+> This package provides an ExtJS package wrapper for the TinyMCE wysiwyg editor.  Currently including v4.8.2.
 
 ## Install
 
@@ -32,7 +32,7 @@ For an open tooling build, also add the node_modules path to the workspace.json 
         "dir": "...${package.dir}/node_modules/extjs-pkg-tinymce"
     }
 
-Simply include the control into any file:
+Simply include the control into any class file:
 
     require: [ 'Ext.tinymce.TinyMceEditor' ],
     items: [
@@ -40,14 +40,22 @@ Simply include the control into any file:
         xtype: 'tinymceeditor'
     }]
 
+## Feedback & Contributing
+
+* Please report any bugs, suggestions or documentation requests via the
+  [Issues](https://github.com/spmeesseman/extjs-pkg-tniymce/issues)
+* Feel free to submit
+  [pull requests](https://github.com/spmeesseman/extjs-pkg-tniymce/pulls)
+* [Contributors](https://github.com/spmeesseman/extjs-pkg-tniymce/graphs/contributors)
+
 ## Other ExtJs packages and builds by spmeesseman
 
-extjs-server-net
-extjs-pkg-fontawesome
-extjs-pkg-theme-graphite-small
-extjs-pkg-theme-amethyst
+* extjs-server-net
+* extjs-pkg-fontawesome
+* extjs-pkg-theme-graphite-small
+* extjs-pkg-theme-amethyst
 
 ## Other Non-ExtJs packages and builds by spmeesseman
 
-vscode-taskexplorer
-svn-scm-ext
+* vscode-taskexplorer
+* svn-scm-ext
