@@ -63,48 +63,4 @@
         ]]>
     </script>
 
-   <property 
-       name="PackageName"
-       value="extjs-pkg-tinymce" />
-   
-   <property 
-       name="TinyMceVersion"
-       value="4.8.2" />
-   
-   <target name="build-tinymce"
-           description="Build the TinyMCE Editor Package"
-           depends="init">
-           
-      <echo message="Building app package    : TinyMCE"/>
-      <echo message="Output Directory        : ${package.dir}"/>
-      
-      <mkdir dir="resources"/>
-
-      <copy todir="resources" verbose="true" includeEmptyDirs="false" overwrite="true" >
-        <fileset dir="mce-release\${TinyMceVersion}">
-            <include name="*\**"/>
-        </fileset>
-      </copy>
-      
-      <x-sencha-command inheritall="false">
-          package 
-             build
-      </x-sencha-command>
-      
-      <x-sencha-command inheritall="false">
-           package
-               add 
-                  ${workspace.dir}\build\tinymce\tinymce.pkg
-      </x-sencha-command>
-      
-      <delete includeemptydirs="true" verbose="true" dir="${workspace.dir}\..\build\temp" />
-      
-      <!--
-      <copy todir="\\192.168.68.140\d$\GEMS 2 Server-0\extjs\pkgs" verbose="true" includeEmptyDirs="false" >
-          <fileset dir="${cmd.dir}\..\repo\pkgs" />
-      </copy>
-      -->
-      
-   </target>
-
 </project>

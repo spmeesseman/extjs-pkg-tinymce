@@ -108,22 +108,8 @@
 					"changelogTitle": "#Change Log"
 				}
 			],
-			[
-				"@semantic-release/npm",
-				{
-					"assets": [
-						"build/extjs-pkg-tinymce/**"
-					]
-				}
-			],
-			[
-				"@semantic-release/github",
-				{
-					"assets": [
-						"build/extjs-pkg-tinymce/**"
-					]
-				}
-			],
+			"@semantic-release/npm",
+			"@semantic-release/github",
 			"@semantic-release/git"
 		]
 	},
@@ -132,12 +118,12 @@
 		"type": "code",
 		"creator": "smeesseman",
 		"summary": "Package wrapper for TinyMCE",
-		"detailedDescription": "Package wrapper for Tiny Moxiecode Content Editor",
+		"detailedDescription": "Package wrapper for TinyMCE Content Editor",
 		"version": "4.8.2.2",
 		"compatVersion": "4.2.0",
 		"format": "1",
 		"slicer": {},
-		"output": "${package.dir}/build",
+		"output": "${framework.dir}/build/packages/${package.name}",
 		"local": true,
 		"resource": {
 			"paths": ""
