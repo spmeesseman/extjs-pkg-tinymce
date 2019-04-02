@@ -22,8 +22,7 @@
 		"semantic-release": "^15.13.3"
 	},
 	"scripts": {
-		"install2": "npm run install",
-		"build": "echo success",
+		"build": "npx sencha package build",
 		"ant-build": "ant -logger org.apache.tools.ant.listener.AnsiColorLogger build-tinymce",
 		"repo-release": "npx sencha package add build\\tinymce\\tinymce.pkg",
 		"semantic-release": "semantic-release --no-ci",

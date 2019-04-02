@@ -1,4 +1,4 @@
-# ExtJs Package (Open Tooling) - TinyMCE
+# ExtJs Package Open Tooling Package Wrapper for TinyMCE
 
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 [![Greenkeeper badge](https://badges.greenkeeper.io/spmeesseman/extjs-pkg-tinymce.svg)](https://greenkeeper.io/)
@@ -10,24 +10,20 @@
 
 ## Description
 
-> This package provides an ExtJS wrapper for the TinyMCE wysiwyg editor.
+> This package provides an ExtJS wrapper for the TinyMCE wysiwyg editor.  Currently including v4.8.2.
 
 ## Install
 
 To install this package, run the following command:
 
-> npm install extjs-pkg-tinymce
+    npm install extjs-pkg-tinymce
 
 ## Usage
-
-The TinyMCE editor is included at:
-
-    mce-release\version
 
 To include the package in an ExtJS application build, be sure to add the package name to the list of required packages in the app.json file:
 
     "requires": [
-         "extjs-pkg-tinymce",
+         "tinymce",
         ...
     ]
 
@@ -44,3 +40,7 @@ extjs-pkg-fontawesome
 extjs-pkg-theme-graphite-small
 extjs-pkg-theme-amethyst
 
+## Other Non-ExtJs packages and builds by spmeesseman
+
+vscode-taskexplorer
+svn-scm-ext
