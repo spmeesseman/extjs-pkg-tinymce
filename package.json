@@ -13,55 +13,17 @@
 	"bugs": {
 		"url": "https://github.com/spmeesseman/extjs-pkg-tinymce/issues"
 	},
-	"dependencies": {
-		"@sencha/ext": "~6.7.0",
-		"@sencha/ext-classic": "~6.7.0",
-		"@sencha/ext-classic-theme-base": "^6.7.0",
-		"@sencha/ext-classic-theme-classic": "~6.7.0",
-		"@sencha/ext-classic-theme-crisp": "^6.7.0",
-		"@sencha/ext-classic-theme-graphite": "^6.7.0",
-		"@sencha/ext-classic-theme-neptune": "^6.7.0",
-		"@sencha/ext-classic-theme-triton": "^6.7.0",
-		"@sencha/ext-modern": "~6.7.0",
-		"@sencha/ext-modern-theme-neptune": "^6.7.0",
-		"@sencha/ext-modern-theme-triton": "^6.7.0",
-		"@sencha/ext-modern-theme-ios": "^6.7.0",
-		"@sencha/ext-modern-theme-material": "^6.7.0"
-	},
 	"devDependencies": {
-		"@types/glob": "^7.1.1",
-		"@types/istanbul": "^0.4.30",
-		"@types/mocha": "^5.2.6",
-		"@types/node": "^11.11.3",
-		"@types/semver": "^5.5.0",
-		"@types/tmp": "0.0.34",
-		"@types/xml2js": "^0.4.3",
 		"@semantic-release/changelog": "^3.0.2",
 		"@semantic-release/git": "^7.0.8",
 		"@semantic-release/exec": "^3.3.0",
-		"@sencha/ext-webpack-plugin": "~6.7.0",
-		"codecov": "^3.2.0",
 		"commitizen": "^3.0.7",
 		"cz-conventional-changelog": "^2.1.0",
-		"decache": "^4.5.1",
-		"glob": "^7.1.2",
-		"iconv-lite": "^0.4.23",
-		"istanbul": "^0.4.5",
-		"jschardet": "^2.1.0",
-		"mocha": "^6.0.2",
-		"mocha-junit-reporter": "^1.18.0",
-		"remap-istanbul": "^0.13.0",
-		"semantic-release": "^15.13.3",
-		"html-webpack-plugin": "^3.2.0",
-		"cross-env": "^5.2.0",
-		"portfinder": "^1.0.20",
-		"webpack": "^4.29.1",
-		"webpack-cli": "^3.2.3",
-		"webpack-dev-server": "^3.1.14"
+		"semantic-release": "^15.13.3"
 	},
 	"scripts": {
 		"install2": "npm run install",
-		"build": "npx sencha package build",
+		"build2": "npx sencha package build",
 		"ant-build": "ant -logger org.apache.tools.ant.listener.AnsiColorLogger build-tinymce",
 		"repo-release": "npx sencha package add build\\tinymce\\tinymce.pkg",
 		"semantic-release": "semantic-release --no-ci",
@@ -114,15 +76,19 @@
 		]
 	},
 	"sencha": {
+		"name": "tinymce",
 		"namespace": "Ext",
+		"framework": "ext",
 		"type": "code",
+		"toolkit": "classic",
+		"theme": "theme-neptune",
 		"creator": "smeesseman",
 		"summary": "Package wrapper for TinyMCE",
 		"detailedDescription": "Package wrapper for TinyMCE Content Editor",
 		"version": "4.8.2.2",
 		"compatVersion": "4.2.0",
 		"format": "1",
-		"slicer": {},
+		"slicer": null,
 		"output": "${framework.dir}/build/packages/${package.name}",
 		"local": true,
 		"resource": {
@@ -158,13 +124,6 @@
 		],
 		"ignore": [
 			"(^|/)CVS(/?$|/.*?$)"
-		],
-		"framework": "ext",
-		"builds": {
-			"triton": {
-				"toolkit": "classic",
-				"theme": "theme-triton"
-			}
-		}
+		]
 	}
 }
