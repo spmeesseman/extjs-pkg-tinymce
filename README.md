@@ -1,6 +1,7 @@
 # ExtJs Package (Open Tooling) - TinyMCE
 
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+[![Greenkeeper badge](https://badges.greenkeeper.io/spmeesseman/extjs-pkg-tinymce.svg)](https://greenkeeper.io/)
 [![Build Status](https://dev.azure.com/spmeesseman/extjs-pkg-tinymce/_apis/build/status/spmeesseman.extjs-pkg-tinymce?branchName=master)](https://dev.azure.com/spmeesseman/extjs-pkg-tinymce/_build/latest?definitionId=2&branchName=master)
 
 [![Known Vulnerabilities](https://snyk.io/test/github/spmeesseman/extjs-pkg-tinymce/badge.svg)](https://snyk.io/test/github/spmeesseman/extjs-pkg-tinymce)
