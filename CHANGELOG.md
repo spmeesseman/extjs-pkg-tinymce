@@ -1,5 +1,12 @@
 #Change Log
 
+## [1.0.6](https://github.com/spmeesseman/extjs-pkg-tinymce/compare/v1.0.5...v1.0.6) (2019-04-02)
+
+
+### Bug Fixes
+
+* include resources folder direcly in npm package ([02a85c0](https://github.com/spmeesseman/extjs-pkg-tinymce/commit/02a85c0))
+
 ## [1.0.5](https://github.com/spmeesseman/extjs-pkg-tinymce/compare/v1.0.4...v1.0.5) (2019-03-24)
 
 Change Log

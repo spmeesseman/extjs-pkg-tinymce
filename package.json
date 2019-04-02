@@ -3,7 +3,7 @@
 	"displayName": "ExtJs Server TinyMCE Package",
 	"description": "ExtJS 6 TinyMCE Package",
 	"publisher": "spmeesseman",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"icon": "images/subversion.png",
 	"homepage": "https://github.com/spmeesseman/extjs-pkg-tinymce/blob/master/README.md",
 	"repository": {
