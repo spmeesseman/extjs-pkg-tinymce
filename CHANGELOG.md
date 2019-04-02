@@ -1,5 +1,7 @@
 #Change Log
 
+## [1.0.7](https://github.com/spmeesseman/extjs-pkg-tinymce/compare/v1.0.6...v1.0.7) (2019-04-02)
+
 ## [1.0.6](https://github.com/spmeesseman/extjs-pkg-tinymce/compare/v1.0.5...v1.0.6) (2019-04-02)
 
 
