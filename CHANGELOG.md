@@ -1,4 +1,4 @@
-#Change Log
+# Change Log
 
 ## [1.0.8](https://github.com/spmeesseman/extjs-pkg-tinymce/compare/v1.0.7...v1.0.8) (2019-04-02)
 
