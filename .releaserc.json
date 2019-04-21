@@ -6,11 +6,6 @@
             {
                 "releaseRules": [
                     {
-                        "type": "docs",
-                        "scope": "readme",
-                        "release": "patch"
-                    },
-                    {
                         "type": "refactor",
                         "release": "patch"
                     },
