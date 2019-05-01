@@ -1,5 +1,5 @@
 {
-	"name": "extjs-pkg-tinymce",
+	"name": "@spmeesseman/extjs-pkg-tinymce",
 	"displayName": "ExtJs Server TinyMCE Package",
 	"description": "ExtJS 6 TinyMCE Package",
 	"publisher": "spmeesseman",
@@ -34,6 +34,9 @@
 		"commitizen": {
 			"path": "cz-conventional-changelog"
 		}
+	},
+	"publishConfig": {
+		"access": "public"
 	},
 	"files": [
 		"src",
