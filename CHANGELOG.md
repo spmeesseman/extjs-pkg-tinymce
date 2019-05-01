@@ -1,5 +1,23 @@
 # Change Log
 
+## [1.0.10](https://github.com/spmeesseman/extjs-pkg-tinymce/compare/v1.0.9...v1.0.10) (2019-05-01)
+
+
+### Build System
+
+* **semantic-release:** remove style patch increment add featmin patch increment [skip ci] ([94222f8](https://github.com/spmeesseman/extjs-pkg-tinymce/commit/94222f8))
+
+
+### Code Refactoring
+
+* remove build.xml from release package ([d4a0983](https://github.com/spmeesseman/extjs-pkg-tinymce/commit/d4a0983))
+
+
+### Documentation
+
+* **readme:** update build by me section ([5912efd](https://github.com/spmeesseman/extjs-pkg-tinymce/commit/5912efd))
+* **readme:** update builds list [skip ci] ([7519eb8](https://github.com/spmeesseman/extjs-pkg-tinymce/commit/7519eb8))
+
 ## [1.0.9](https://github.com/spmeesseman/extjs-pkg-tinymce/compare/v1.0.8...v1.0.9) (2019-04-09)
 
 
