@@ -36,7 +36,6 @@
 		}
 	},
 	"files": [
-		"build.xml",
 		"src",
 		"resources"
 	],
