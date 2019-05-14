@@ -1,9 +1,11 @@
 {
 	"name": "@spmeesseman/extjs-pkg-tinymce",
+	"version": "1.0.11",
 	"displayName": "ExtJs Server TinyMCE Package",
 	"description": "ExtJS 6 TinyMCE Package",
-	"author": "spmeesseman",
-	"version": "1.0.11",
+	"author": {
+		"name": "Scott Meesseman"
+	},
 	"license": "MIT",
 	"icon": "images/subversion.png",
 	"homepage": "https://github.com/spmeesseman/extjs-pkg-tinymce/blob/master/README.md",
