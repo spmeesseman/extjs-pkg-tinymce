@@ -2,7 +2,7 @@
 	"name": "@spmeesseman/extjs-pkg-tinymce",
 	"displayName": "ExtJs Server TinyMCE Package",
 	"description": "ExtJS 6 TinyMCE Package",
-	"publisher": "spmeesseman",
+	"author": "spmeesseman",
 	"version": "1.0.11",
 	"license": "MIT",
 	"icon": "images/subversion.png",
