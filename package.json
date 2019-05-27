@@ -3,11 +3,10 @@
 	"version": "1.0.11",
 	"displayName": "ExtJs Server TinyMCE Package",
 	"description": "ExtJS 6 TinyMCE Package",
+	"license": "MIT",
 	"author": {
 		"name": "Scott Meesseman"
 	},
-	"license": "MIT",
-	"icon": "images/subversion.png",
 	"homepage": "https://github.com/spmeesseman/extjs-pkg-tinymce/blob/master/README.md",
 	"repository": {
 		"type": "git",
@@ -20,22 +19,14 @@
 		"@semantic-release/changelog": "^3.0.2",
 		"@semantic-release/exec": "^3.3.0",
 		"@semantic-release/git": "^7.0.8",
-		"commitizen": "^3.0.7",
 		"conventional-changelog-spm": "^1.2.3",
-		"cz-conventional-changelog": "^2.1.0",
-		"semantic-release": "^15.13.3"
+		"semantic-release": "^15.13.14"
 	},
 	"scripts": {
-		"build": "npx sencha package build",
-		"ant-build": "ant -logger org.apache.tools.ant.listener.AnsiColorLogger build-tinymce",
-		"repo-release": "npx sencha package add build\\tinymce\\tinymce.pkg",
+		"app-publish": "app-publisher -p ps",
+        "app-publish-dry": "app-publisher -p ps --dry-run",
 		"semantic-release": "semantic-release --no-ci",
 		"semantic-release-dry": "semantic-release --dry-run"
-	},
-	"config": {
-		"commitizen": {
-			"path": "cz-conventional-changelog"
-		}
 	},
 	"publishConfig": {
 		"access": "public"
