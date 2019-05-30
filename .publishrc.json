@@ -1,9 +1,7 @@
 {
     "projectName":       "extjs-pkg-tinymce",
     "bugs":              "",
-    "buildCommand": [
-        "npm run build"
-    ],
+    "buildCommand":      "",
     "changelogFile":     "CHANGELOG.md",
     "deployCommand":     "",
     "emailNotification": "N",
@@ -40,11 +38,16 @@
     "writeLog":          "N",
     "xRuns": [
     {
-        "textEditor":       "",
-        "distRelease":      "Y",
-        "npmPackDist":      "Y",
-        "emailNotification":"Y",
-        "npmRegistry":      "https://npm.development.pjats.com",
-        "npmScope":         "@perryjohnson"
+        "repoType":      "svn",
+        "repo":          "https://svn.development.pjats.com/repos/pja/app-publisher/trunk",
+        "homePage":      "https://projects.development.pjats.com/app-publisher",
+        "bugs":          "https://projects.development.pjats.com/app-publisher/ticket/1",
+        "npmPackDist":   "Y",
+        "npmRegistry":   "https://npm.development.pjats.com",
+        "textEditor":    "",
+        "npmScope":      "@perryjohnson",
+        "githubRelease": "N",
+        "distRelease":   "Y",
+        "emailNotification": "Y"
     }]
 }

@@ -1,90 +1,90 @@
 {
-	"name": "@spmeesseman/extjs-pkg-tinymce",
-	"version": "1.0.12",
-	"displayName": "ExtJS Package Wrapper for TinyMCE Editor",
-	"description": "ExtJS Package Wrapper for TinyMCE Wysiwyg Editor",
-	"license": "MIT",
-	"author": {
-		"name": "Scott Meesseman"
-	},
-	"homepage": "https://github.com/spmeesseman/extjs-pkg-tinymce/blob/master/README.md",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/spmeesseman/extjs-pkg-tinymce.git"
-	},
-	"bugs": {
-		"url": "https://github.com/spmeesseman/extjs-pkg-tinymce/issues"
-	},
-	"devDependencies": {
-		"@perryjohnson/app-publisher": "^1.4.5"
-	},
-	"scripts": {
-		"app-publish": "app-publisher -p ps",
-		"app-publish-dry": "app-publisher -p ps --dry-run"
-	},
-	"keywords": [
-		"sencha extjs",
-		"tinymce",
-		"wysiwyg",
-		"html editor"
-	],
-	"publishConfig": {
-		"access": "public"
-	},
-	"files": [
-		"src",
-		"resources"
-	],
-	"sencha": {
-		"name": "tinymce",
-		"namespace": "Ext",
-		"framework": "ext",
-		"type": "code",
-		"toolkit": "classic",
-		"theme": "theme-neptune",
-		"creator": "smeesseman",
-		"summary": "Package wrapper for TinyMCE",
-		"detailedDescription": "Package wrapper for TinyMCE Content Editor",
-		"version": "4.8.2.2",
-		"compatVersion": "4.2.0",
-		"format": "1",
-		"slicer": null,
-		"output": "${framework.dir}/build/packages/${package.name}",
-		"local": true,
-		"resource": {
-			"paths": ""
-		},
-		"resources": [
-			{
-				"path": "${package.dir}/resources",
-				"output": "base"
-			}
-		],
-		"sass": {
-			"namespace": "Ext",
-			"etc": [
-				"${package.dir}/sass/var"
-			],
-			"var": [
-				"${package.dir}/sass/var"
-			],
-			"src": [
-				"${package.dir}/sass/src",
-				"${package.dir}/sass/src/main.scss"
-			]
-		},
-		"classpath": [
-			"${package.dir}/src"
-		],
-		"overrides": [
-			"${package.dir}/overrides"
-		],
-		"requires": [
-			"core"
-		],
-		"ignore": [
-			"(^|/)CVS(/?$|/.*?$)"
-		]
-	},
-	"dependencies": {}
+    "name": "@perryjohnson/extjs-pkg-tinymce",
+    "version": "1.0.12",
+    "displayName": "ExtJS Package Wrapper for TinyMCE Editor",
+    "description": "ExtJS Package Wrapper for TinyMCE Wysiwyg Editor",
+    "license": "MIT",
+    "author": {
+        "name": "Scott Meesseman"
+    },
+    "homepage": "https://github.com/spmeesseman/extjs-pkg-tinymce/blob/master/README.md",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/spmeesseman/extjs-pkg-tinymce.git"
+    },
+    "bugs": {
+        "url": "https://projects.development.pjats.com/app-publisher/ticket/1"
+    },
+    "devDependencies": {
+        "@perryjohnson/app-publisher": "^1.4.5"
+    },
+    "scripts": {
+        "app-publish": "app-publisher -p ps",
+        "app-publish-dry": "app-publisher -p ps --dry-run"
+    },
+    "keywords": [
+        "sencha extjs",
+        "tinymce",
+        "wysiwyg",
+        "html editor"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "files": [
+        "src",
+        "resources"
+    ],
+    "sencha": {
+        "name": "tinymce",
+        "namespace": "Ext",
+        "framework": "ext",
+        "type": "code",
+        "toolkit": "classic",
+        "theme": "theme-neptune",
+        "creator": "smeesseman",
+        "summary": "Package wrapper for TinyMCE",
+        "detailedDescription": "Package wrapper for TinyMCE Content Editor",
+        "version": "4.8.2.2",
+        "compatVersion": "4.2.0",
+        "format": "1",
+        "slicer": null,
+        "output": "${framework.dir}/build/packages/${package.name}",
+        "local": true,
+        "resource": {
+            "paths": ""
+        },
+        "resources": [
+            {
+                "path": "${package.dir}/resources",
+                "output": "base"
+            }
+        ],
+        "sass": {
+            "namespace": "Ext",
+            "etc": [
+                "${package.dir}/sass/var"
+            ],
+            "var": [
+                "${package.dir}/sass/var"
+            ],
+            "src": [
+                "${package.dir}/sass/src",
+                "${package.dir}/sass/src/main.scss"
+            ]
+        },
+        "classpath": [
+            "${package.dir}/src"
+        ],
+        "overrides": [
+            "${package.dir}/overrides"
+        ],
+        "requires": [
+            "core"
+        ],
+        "ignore": [
+            "(^|/)CVS(/?$|/.*?$)"
+        ]
+    },
+    "dependencies": {}
 }
