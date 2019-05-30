@@ -1,8 +1,8 @@
 {
 	"name": "@spmeesseman/extjs-pkg-tinymce",
 	"version": "1.0.11",
-	"displayName": "ExtJs Server TinyMCE Package",
-	"description": "ExtJS 6 TinyMCE Package",
+	"displayName": "ExtJS Package Wrapper for TinyMCE Editor",
+	"description": "ExtJS Package Wrapper for TinyMCE Wysiwyg Editor",
 	"license": "MIT",
 	"author": {
 		"name": "Scott Meesseman"
@@ -16,18 +16,18 @@
 		"url": "https://github.com/spmeesseman/extjs-pkg-tinymce/issues"
 	},
 	"devDependencies": {
-		"@semantic-release/changelog": "^3.0.2",
-		"@semantic-release/exec": "^3.3.0",
-		"@semantic-release/git": "^7.0.8",
-		"conventional-changelog-spm": "^1.2.3",
-		"semantic-release": "^15.13.14"
+		"@perryjohnson/app-publisher": "^1.4.5"
 	},
 	"scripts": {
 		"app-publish": "app-publisher -p ps",
-        "app-publish-dry": "app-publisher -p ps --dry-run",
-		"semantic-release": "semantic-release --no-ci",
-		"semantic-release-dry": "semantic-release --dry-run"
+		"app-publish-dry": "app-publisher -p ps --dry-run"
 	},
+	"keywords": [
+		"sencha extjs",
+		"tinymce",
+		"wysiwyg",
+		"html editor"
+	],
 	"publishConfig": {
 		"access": "public"
 	},
@@ -85,5 +85,6 @@
 		"ignore": [
 			"(^|/)CVS(/?$|/.*?$)"
 		]
-	}
+	},
+	"dependencies": {}
 }
