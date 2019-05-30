@@ -1,5 +1,28 @@
 # EXTJS-PKG-TINYMCE CHANGE LOG
 
+## Version 1.0.12 (May 30th, 2019)
+
+### Build System
+
+- **ap:** change history file location to /doc
+- **npm:** add npmrc
+- **npm:** fix invalid attribute publisher->author [skip ci]
+- **npm:** package.json cleanup [skip ci]
+- **npm:** update npmrc
+
+### Chores
+
+- add files / prepare for for first app-publisher release
+- bump conventional-changelog-spm version [skip ci]
+
+### Code Refactoring
+
+- use lf for package.json/pakage-lock.json for npm compatibility
+
+### Code Styling
+
+- cleanip. remove semantic-release dependencies
+
 ## [1.0.11](https://github.com/spmeesseman/extjs-pkg-tinymce/compare/v1.0.10...v1.0.11) (2019-05-01)
 
 
@@ -69,3 +92,4 @@ Change Log
 ### Bug Fixes
 
 * add sencha dev dependencies ([04090e8](https://github.com/spmeesseman/extjs-pkg-tinymce/commit/04090e8))
+

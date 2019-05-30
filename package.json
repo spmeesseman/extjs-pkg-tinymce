@@ -1,6 +1,6 @@
 {
 	"name": "@spmeesseman/extjs-pkg-tinymce",
-	"version": "1.0.11",
+	"version": "1.0.12",
 	"displayName": "ExtJS Package Wrapper for TinyMCE Editor",
 	"description": "ExtJS Package Wrapper for TinyMCE Wysiwyg Editor",
 	"license": "MIT",
