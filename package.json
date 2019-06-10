@@ -14,7 +14,7 @@
         "url": "https://github.com/spmeesseman/extjs-pkg-tinymce.git"
     },
     "bugs": {
-        "url": "https://projects.development.pjats.com/www-linuxapp1/ticket/1"
+        "url": "https://github.com/spmeesseman/extjs-pkg-tinymce/issues"
     },
     "devDependencies": {
         "@perryjohnson/app-publisher": "^1.4.5"
