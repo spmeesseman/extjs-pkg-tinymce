@@ -1,28 +1,23 @@
 {
-    "name": "@perryjohnson/extjs-pkg-tinymce",
+    "name": "@spm/extjs-pkg-tinymce",
     "version": "1.0.12",
     "displayName": "ExtJS Package Wrapper for TinyMCE Editor",
     "description": "ExtJS Package Wrapper for TinyMCE Wysiwyg Editor",
-    "license": "MIT",
+    "license": "GPL-3.0",
     "author": {
         "name": "Scott Meesseman",
-        "email": "spmeesseman@gmail.com"
-    },
-    "homepage": "https://github.com/spmeesseman/extjs-pkg-tinymce/blob/master/README.md",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/spmeesseman/extjs-pkg-tinymce.git"
+        "email": "me@spmeesseman.com"
     },
     "bugs": {
-        "url": "https://github.com/spmeesseman/extjs-pkg-tinymce/issues"
+        "email": "me@spmeesseman.com",
+        "url": "https://app1.spmeesseman.com/projects/set_project.php?project=extjs-pkg-tinymce&make_default=no&ref=bug_report_page.php"
     },
-    "devDependencies": {
-        "@perryjohnson/app-publisher": "^1.4.5"
+    "homepage": "https://app1.spmeesseman.com/svn/web/listing.php?repname=pja&path=%2Fextjs-pkg-tinymce%2Ftrunk%2F",
+    "repository": {
+        "type": "svn",
+        "url": "https://svn.spmeesseman.com/pja/extjs-pkg-tinymce/trunk"
     },
-    "scripts": {
-        "app-publish": "app-publisher -p ps",
-        "app-publish-dry": "app-publisher -p ps --dry-run"
-    },
+    "devDependencies": {},
     "keywords": [
         "sencha extjs",
         "tinymce",
