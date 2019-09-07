@@ -5,7 +5,7 @@
     "buildCommand": [
         "npm run build"
     ],
-    "changelogFile":     "CHANGELOG.md",
+    "changelogFile":     "",
     "deployCommand":     "",
     "distRelease":       "N",
     "distReleasePath":   "",
