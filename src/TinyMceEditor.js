@@ -33,7 +33,10 @@ Ext.define('Ext.tinymce.TinyMceEditor',
     //
     // 
     //
-    editorLoaded: Ext.emptyFn,
+	editorLoaded:  function()
+	{
+		return Ext.tinymce.TinyMceEditor.sriptLoaded && this.wysiwygIntialized;
+	},
 
     privates:
     {
@@ -41,6 +44,12 @@ Ext.define('Ext.tinymce.TinyMceEditor',
     	initialValue: null,
     	initialValueSet: false
     },
+
+	config:
+	{
+		imagePath: 'resources/images',
+		tinyMceCfg: undefined
+	},
 
     //
     // Custom static properties
@@ -55,6 +64,12 @@ Ext.define('Ext.tinymce.TinyMceEditor',
     		scope: null
     	}
     },
+
+	updateImagePath: function(v)
+	{
+		Ext.tinymce.TinyMceEditor.imgPath = v;
+		return v;
+	},
 
     autoHeight: true,
     border:false,
@@ -71,58 +86,67 @@ Ext.define('Ext.tinymce.TinyMceEditor',
      */
     tinyMCEConfig:
     {
-    	plugins: [
-    	          "autolink lists link image charmap print preview hr anchor pagebreak",
-    	          "searchreplace wordcount visualblocks visualchars code fullscreen",
-    	          "insertdatetime media nonbreaking save table contextmenu directionality",
-    	          "emoticons template paste textcolor colorpicker spellchecker"
-    	          ],
+    	plugins: "autolink lists link image charmap print preview hr anchor pagebreak " +
+				 "searchreplace wordcount visualblocks visualchars code fullscreen " +
+				 "insertdatetime media nonbreaking save table contextmenu directionality " +
+				 "emoticons template paste textcolor colorpicker spellchecker fullpage",
 
-    	          toolbar1: "newdocument fullpage | bold italic underline strikethrough forecolor " +
-    	          "backcolor | alignleft aligncenter alignright alignjustify | bullist numlist | " +
-    	          "outdent indent blockquote | styleselect formatselect fontselect fontsizeselect | code preview",
-    	          toolbar2: "cut copy paste insertdatetime | searchreplace | undo redo | table | hr removeformat | " +
-    	          "subscript superscript | charmap emoticons | print fullscreen | ltr rtl | spellchecker | " +
-    	          "visualchars visualblocks nonbreaking template pagebreak | link unlink anchor image media",
+		toolbar1: "newdocument fullpage | bold italic underline strikethrough forecolor " +
+				  "backcolor | alignleft aligncenter alignright alignjustify | bullist numlist | " +
+				  "outdent indent blockquote | styleselect formatselect fontselect fontsizeselect | code preview fullpage",
+		toolbar2: "cut copy paste insertdatetime | searchreplace | undo redo | table | hr removeformat | " +
+				  "subscript superscript | charmap emoticons | print fullscreen | ltr rtl | spellchecker | " +
+				  "visualchars visualblocks nonbreaking template pagebreak | link unlink anchor image media",
 
-    	          menubar: true,
-    	          toolbar_items_size: 'small',
+		menubar: true,
+		toolbar_items_size: 'small',
+		image_advtab: true,
+		element_format : "html",
+		forced_root_block : false,
+		
+		//
+		// cant get editor to preserve indentations in html source
+		//
+		//preformatted: true,
+		//verify_html : false,
+		//whitespace_elements: "pre script noscript style textarea video audio iframe object code div span p body tbody table th tr td",
 
-    	          images_upload_handler: function(blobInfo, success, failure)
-    	          {
-    	        	  var filename = Ext.tinymce.TinyMceEditor.imgPath + '/' + blobInfo.filename();
-    	        	  Ext.Ajax.request(
-    	        	  {
-    	        		  url: 'System/UploadFile',
-    	        		  params:
-    	        		  {
-    	        			  filename: filename,
-    	        			  file: blobInfo.base64()
-    	        		  },
-    	        		  success: function(response, opts) 
-    	        		  {
-    	        			  var jso = response.responseJson ? response.responseJson 
-    	        			  : response.responseText ? Ext.util.JSON.decode(response.responseText) : null;
-    	        			  if (!jso)
-    	        			  {
-    	        				  failure("Invalid repsonse");
-    	        			  }   
-    	        			  if (!jso.success || !jso.location)
-    	        			  {
-    	        				  failure(jso.message);
-    	        			  }    
-    	        			  success(jso.location);
-    	        		  },
-    	        		  failure: function(response, options) 
-    	        		  {
-    	        			  Utils.handleAjaxError(response, options, 'Could not save file', mask);
-    	        			  failure();
-    	        		  }
-    	        	  });
-    	          }
+		images_upload_handler: function(blobInfo, success, failure)
+		{
+			var filename = Ext.tinymce.TinyMceEditor.imgPath + '/' + blobInfo.filename();
+			
+			Ext.Ajax.request(
+			{
+				url: 'System/UploadFile',
+				params:
+				{
+					filename: filename,
+					file: blobInfo.base64()
+				},
+				success: function(response, opts) 
+				{
+					var jso = response.responseJson ? response.responseJson 
+					: response.responseText ? Ext.util.JSON.decode(response.responseText) : null;
+					if (!jso)
+					{
+						failure("Invalid repsonse");
+					}   
+					if (!jso.success || !jso.location)
+					{
+						failure(jso.message);
+					}    
+					success(jso.location);
+				},
+				failure: function(response, options) 
+				{
+					Utils.handleAjaxError(response, options, 'Could not save file', mask);
+					failure();
+				}
+			});
+		}
     },
 
-    afterRender: function () 
+    afterRender: function() 
     {
     	var me = this;
     	me.callParent(arguments);
@@ -270,7 +294,7 @@ Ext.define('Ext.tinymce.TinyMceEditor',
 
     	me.lastHeight = height;
 
-    	if (!me.wysiwygIntialized || !me.rendered) { return; }
+    	if (!me.wysiwygIntialized || !me.rendered) { return 0; }
 
     	var ed = tinymce.get(me.getInputId());
 
@@ -278,7 +302,7 @@ Ext.define('Ext.tinymce.TinyMceEditor',
     	// because the size values of the hidden editor
     	// are calculated wrong.
 
-    	if (ed.isHidden()) { return; }
+    	if (ed.isHidden()) { return 0; }
 
     	var edIframe = Ext.get(me.getInputId() + "_ifr");
 
@@ -312,20 +336,26 @@ Ext.define('Ext.tinymce.TinyMceEditor',
     	var me = this;
 
     	var elm = Ext.getDom(me.getId() + "-inputWrap");
-    	if(!elm) return;
+		if (!elm) 
+			return;
 
-    	if(state) elm.classList.remove("tinymce-hide-border");
-    	else      elm.classList.add("tinymce-hide-border");
+		if (state)
+			elm.classList.remove("tinymce-hide-border");
+		else 
+			elm.classList.add("tinymce-hide-border");
 
     	var elm = Ext.getDom(me.getId() + "-triggerWrap");
-    	if(!elm) return;
+		if (!elm) 
+			return;
 
-    	if(state) elm.classList.remove("tinymce-hide-border");
-    	else      elm.classList.add("tinymce-hide-border");
+		if (state) 
+			elm.classList.remove("tinymce-hide-border");
+		else 
+			elm.classList.add("tinymce-hide-border");
     },
 
 
-    initEditor: function (height) 
+    initEditor: function(height) 
     {
 
     	var me = this;
@@ -352,11 +382,10 @@ Ext.define('Ext.tinymce.TinyMceEditor',
     	me.tinyMCEConfig.resize = false;
     	me.tinyMCEConfig.elements = me.getInputId();
 
-    	if(me.lastFrameHeight) {
+    	if (me.lastFrameHeight) {
     		me.tinyMCEConfig.height = me.lastFrameHeight;
     	}
-    	else
-    	{
+    	else {
     		me.tinyMCEConfig.height = 30;
     	}
 
@@ -423,14 +452,31 @@ Ext.define('Ext.tinymce.TinyMceEditor',
     			if (me.validateOnChange) {
     				me.validate();
     			}
-    		});
+			});
+			
+			ed.on('keydown', function(e) {
+				if (e.keyCode == 9)  // tab pressed
+				{ 
+				  if (e.shiftKey) {
+					ed.execCommand('Outdent');
+				  }
+				  else {
+					ed.execCommand('Indent');
+				  }
+
+				  e.preventDefault();
+				  return false;
+				}
+				return true;
+			});
 
     		// This ensures that the focusing the editor
     		// bring the parent window to front
 
     		ed.on('focus', function(e) {
     			var w = me.findParentByType('window');
-    			if(w) w.toFront(true);
+				if (w)
+					w.toFront(true);
     		});
 
     		if (user_setup) { user_setup(ed); }
@@ -438,8 +484,11 @@ Ext.define('Ext.tinymce.TinyMceEditor',
     	};
     	// END: setup
 
-    	tinymce.suffix = '.min';
-    	tinymce.init(me.tinyMCEConfig);
+		me.tinyMCEConfig.image_prepend_url = window.location.origin + '/';
+		Ext.merge(me.tinyMCEConfig, me.getTinyMceCfg() ? me.getTinyMceCfg() : {});
+
+		tinymce.suffix = '.min';
+		tinymce.init(me.tinyMCEConfig);
 
     	me.intializationInProgress = false;
     	me.wysiwygIntialized = true;
