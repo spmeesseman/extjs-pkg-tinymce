@@ -2,9 +2,7 @@
     "projectName":       "extjs-pkg-tinymce",
     "branch":            "trunk",
     "bugs":              "",
-    "buildCommand": [
-        "npm run build"
-    ],
+    "buildCommand":      [],
     "changelogFile":     "",
     "deployCommand":     "",
     "distRelease":       "N",
@@ -16,16 +14,16 @@
     "emailRecip":        "productrelease@pjats.com",
     "emailSender":       "productbuild@pjats.com",
     "emailHrefs": [
-        "https://app1.spmeesseman.com/svn/web/filedetails.php?repname=pja&path=%2Fextjs-pkg-tinymce%2Ftrunk%2FREADME.md&usemime=1|ReadMe File|Readme File - WebSVN",
-        "https://app1.spmeesseman.com/projects/set_project.php?project=extjs-pkg-tinymce&make_default=no&ref=roadmap_page.php|Project Roadmap|Roadmap - Projects Board",
-        "https://app1.spmeesseman.com/projects/set_project.php?project=extjs-pkg-tinymce&make_default=no&ref=changelog_page.php|Project Changelog|Changelog - Projects Board"
+        "https://app1.development.pjats.com/svn/web/filedetails.php?repname=pja&path=%2Fextjs-pkg-tinymce%2Ftrunk%2FREADME.md&usemime=1|ReadMe File|Readme File - WebSVN",
+        "https://app1.development.pjats.com/projects/set_project.php?project=extjs-pkg-tinymce&make_default=no&ref=roadmap_page.php|Project Roadmap|Roadmap - Projects Board",
+        "https://app1.development.pjats.com/projects/set_project.php?project=extjs-pkg-tinymce&make_default=no&ref=changelog_page.php|Project Changelog|Changelog - Projects Board"
     ],
     "githubRelease":     "N",
     "githubAssets":      "",
     "githubUser":        "",
     "historyFile":       "doc\\history.txt",
     "historyHdrFile":    "install\\history-hdr.txt",
-    "historyHref":       "<a href=\"https://app1.spmeesseman.com/svn/web/filedetails.php?repname=pja&path=%2Fextjs-pkg-tinymce%2Ftrunk%2Fdoc%2Fhistory.txt&usemime=1\">History File - WebSVN</a>",
+    "historyHref":       "<a href=\"https://app1.development.pjats.com/svn/web/filedetails.php?repname=pja&path=%2Fextjs-pkg-tinymce%2Ftrunk%2Fdoc%2Fhistory.txt&usemime=1\">History File - WebSVN</a>",
     "historyLineLen":    80,
     "homePage":          "",
     "interactive":       "N",
@@ -33,13 +31,13 @@
     "mantisbtApiToken":  "${MANTISBT_API_TOKEN}",
     "mantisbtPlugin":    "",
     "mantisbtProject":   "",
-    "mantisbtUrl":       "https://app1.spmeesseman.com/projects",
+    "mantisbtUrl":       "https://app1.development.pjats.com/projects",
     "mantisbtAssets": [
         "doc\\history.txt|History File",
         "install\\dist\\extjs-pkg-tinymce.tgz|NPM Tarball"
     ],
     "npmPackDist":       "Y",
-    "npmRegistry":       "https://npm.spmeesseman.com",
+    "npmRegistry":       "https://npm.development.pjats.com",
     "npmRelease":        "Y",
     "nugetRelease":      "N",
     "pathToDist":        "install\\dist",
@@ -47,7 +45,7 @@
     "pathtoMainRoot":    "",
     "pathPreRoot":       "",
     "postBuildCommand":  "",
-    "repo":              "https://svn.spmeesseman.com/pja/extjs-pkg-tinymce/trunk",
+    "repo":              "https://svn.development.pjats.com/pja/extjs-pkg-tinymce/trunk",
     "repoType":          "svn",
     "skipCommit":        "N",
     "skipDeployPush":    "N",
