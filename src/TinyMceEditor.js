@@ -640,12 +640,10 @@ Ext.define('Ext.tinymce.TinyMceEditor',
 
 
     //
-    // Sometimes, the editor should be reinitilized on the fly, e.g.
-    // if the body css has been changed (in a CMS the user changed
-    // the design template of a page opened in the editor).
-    // This method removes the editor from the textarea, adds the
-    // changed properties to the base config object and initializes
-    // the editor again.
+	// Sometimes, the editor should be reinitilized on the fly, e.g. if the body css has been changed
+	// (in a CMS the user changed the design template of a page opened in the editor).
+	// This method removes the editor from the textarea, adds the changed properties to the base
+	// config object and initializes the editor again.
     //
     reinitEditor: function (cfg) 
     {
@@ -688,18 +686,18 @@ Ext.define('Ext.tinymce.TinyMceEditor',
     	var me = this;
     	var res = me.callParent(arguments);
 
-    	if (me.initialValueSet)
+    	if (me.initialValueSet && me.initialValue)
     	{
     		return res;
     	}
 
-    	if (me.wysiwygIntialized) {
-    		// The editor does some preformatting of the HTML text
-    		// entered by the user.
-    		// The method setValue sets the value of the textarea.
-    		// We have to load the text into editor for the
+		if (me.wysiwygIntialized)
+		{
+			//
+    		// The editor does some preformatting of the HTML text entered by the user.
+    		// The method setValue sets the value of the textarea. We have to load the text into editor for the
     		// preformatting and then to save it back to the textarea.
-
+			//
     		var ed = tinymce.get(me.getInputId());
     		if (ed) {
     			ed.load();
