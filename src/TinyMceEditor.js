@@ -1,4 +1,4 @@
-Ext.define('Ext.tinymce.TinyMceEditor', 
+Ext.define('Ext.ux.tinymce.TinyMceEditor', 
 {
     extend: 'Ext.form.TextArea',
     xtype: 'tinymceeditor',
