@@ -280,7 +280,7 @@ Ext.define('Ext.ux.tinymce.HtmlEditor',
                 }
                 else
                 {
-                    Ext.create('Ext.ux.filebrowser.InputWinOne',
+                    Ext.create('Ext.ux.tinymce.InputWinOne',
                     {
                         title:'Enter the title for this document',
                         ctl: he,
