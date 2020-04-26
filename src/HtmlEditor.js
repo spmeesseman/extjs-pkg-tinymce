@@ -4,18 +4,21 @@ Ext.define('Ext.ux.tinymce.HtmlEditor',
     xtype: 'tinymcehtmleditor',
    
     requires: [
+        'Ext.data.ArrayStore',
+        'Ext.toolbar.Toolbar',
+        'Ext.form.field.ComboBox',
         'Ext.ux.tinymce.TinyMceEditor'
     ],
               
 	border: false,
     reference: 'htmleditorRef',
-    
-    userDoc: false,
+    referenceHolder: true,
 
+    saved: true,
+    
 	config:
     {
         saveCb: Ext.emptyFn,
-        minmaxCb: Ext.emptyFn,
         fileData: undefined,
         defaultValue: undefined
     },
@@ -29,8 +32,8 @@ Ext.define('Ext.ux.tinymce.HtmlEditor',
     layout: 
     {
         type: 'vbox',
-        align : 'stretch',
-        pack  : 'start'
+        align: 'stretch',
+        pack : 'start'
     },
 
     dockedItems: [
@@ -81,23 +84,14 @@ Ext.define('Ext.ux.tinymce.HtmlEditor',
                     var he = cmb.up('tinymcehtmleditor');
                     var retries = 0;
 
-                    if (cmb.ignoreChangeEvent === true) {
+                    if (!he || !newvalue || cmb.ignoreChangeEvent === true) {
                         return;
                     }
-
-                    Utils.log('Help desk doc editor2 selection', 1);
-                    Utils.logValue('   New value', newvalue, 2);
-
-                    //
-                    // unhide add button
-                    //
-                    cmb.next('button').setHidden(false);
 
                     function setEditorValue(value)
                     {
                         var tmce = he.down('tinymceeditor');
-                        delete he.addMode;
-                        if (he && tmce) // && tmce.isEditorLoaded())
+                        if (tmce) // && tmce.isEditorLoaded())
                         {
                             Utils.log('   Setting editor value', 2);
                             tmce.setValue(value);
@@ -112,8 +106,6 @@ Ext.define('Ext.ux.tinymce.HtmlEditor',
                             }).delay(500);
                         }
                     }
-
-                    he.userDoc = newvalue.indexOf('/user/') !== -1;
 
                     Ext.Ajax.request({
                         url: newvalue + '?rnd=' + Utils.getRandomNumber(),
@@ -131,52 +123,15 @@ Ext.define('Ext.ux.tinymce.HtmlEditor',
             iconCls: 'far fa-save',
             handler: function(btn)
             {
-				var he = btn.up('tinymcehtmleditor');
-				var tmce = he.down('tinymceeditor');
-                var cmb = btn.prev('combo');
-                var fileName = cmb.getValue();
-
-				var html = tmce.getValue();
-
-                function submit()
+                var edr = btn.up('tinymcehtmleditor');
+                if (edr.saveCb && edr.saveCb instanceof Function)
                 {
-                    if (!html || !fileName)
-                    {
-                        Utils.alert('Invalid file saving parameters');
-                        return;
-                    }
-                
-                    var mask = ToolkitUtils.mask(he, 'Saving document');
-                    Ext.Ajax.request(
-                    {
-                        url: 'System/UploadFile',
-                        method: 'POST',
-                        success: function(response) 
-                        {
-                            ToolkitUtils.unmask(mask);
-                            Utils.toast('Successfully saved document');
-                        },
-                        failure: function(response, opts) 
-                        {
-                            ToolkitUtils.unmask(mask);
-                            Utils.handleAjaxError(response, opts, 'Could not save document');
-                        },
-                        params:
-                        {
-                            file: btoa(html),
-                            filename: fileName
-                        }
-                    });
+                    var tmce = edr.down('tinymceeditor'),
+                        cmb = btn.prev('combo'),
+                        path = cmb.getValue(),
+                        content = tmce.getValue();
+                    edr.saveCb(path, content, edr);
                 }
-                        
-                var msg = "Saving this document will overwrite the current version on the server.<br><br>" +
-                        "The development team should be informed of changes so that the source " +
-                        "repository can be updated.<br><br>Proceed?";
-                Utils.promptYesNo(msg, function(mbtn) {
-                    if (mbtn == "yes") { 
-                        submit();
-                    }
-                }, this);
             }
 		}]
 	}],
@@ -190,6 +145,28 @@ Ext.define('Ext.ux.tinymce.HtmlEditor',
 			convert_urls: false,
 			allow_script_urls: true
 		}
-	}]
+    }],
+    
+    listeners:
+    {
+        beforeclose: function(panel, eOpts)
+        {
+            if (panel.saved === false)
+            {
+                Ext.Msg.confirm('Save', 'Save changes?', function(button)
+                {
+                    panel.saved = true;
+                    var btn = panel.down('button[text=Save]');
+                    btn.disable();
+                    if (button == 'yes') {
+                        btn.fireEvent('click', btn);
+                    }
+                    panel.close();
+                });
+                return false;
+            } 
+            return true;
+        }
+    }
 	
 });
