@@ -31,7 +31,7 @@
     ],
     "sencha": {
         "name": "tinymce",
-        "namespace": "Ext",
+        "namespace": "Ext.ux",
         "framework": "ext",
         "type": "code",
         "toolkit": "classic",
@@ -55,7 +55,7 @@
             }
         ],
         "sass": {
-            "namespace": "Ext",
+            "namespace": "Ext.ux",
             "etc": [
                 "${package.dir}/sass/var"
             ],

@@ -1,11 +1,10 @@
 Ext.define('Ext.ux.tinymce.HtmlEditor',
 {
     extend: 'Ext.panel.Panel',
-    xtype: 'filebrowserhtmleditor',
+    xtype: 'tinymcehtmleditor',
    
     requires: [
-        'Ext.ux.tinymce.TinyMceEditor',
-        'Ext.ux.tinymce.InputWinOne'
+        'Ext.ux.tinymce.TinyMceEditor'
     ],
               
 	border: false,
@@ -40,22 +39,11 @@ Ext.define('Ext.ux.tinymce.HtmlEditor',
         dock: 'top',
         items: [
         {
-            xtype: 'displayfield',
-            value: 'New Document',
-            fieldCls: 'filebrowser-base-color',
-            hidden: true,
-            fieldStyle: {
-                'font-size': '16px'
-            }
-        },
-        {
             xtype: 'combo',
-            fieldLabel: 'Document',
             displayField: 'dsc',
             valueField: 'file',
             editable: false,
             forceSelection: true,
-            labelWidth: 65,
             margin: '0 15 0 0',
 			queryMode: 'local',
             width: 340,
@@ -90,7 +78,7 @@ Ext.define('Ext.ux.tinymce.HtmlEditor',
                 //},
                 change: function(cmb, newvalue)
                 {
-                    var he = cmb.up('helpedithtmlfile');
+                    var he = cmb.up('tinymcehtmleditor');
                     var retries = 0;
 
                     if (cmb.ignoreChangeEvent === true) {
@@ -139,76 +127,16 @@ Ext.define('Ext.ux.tinymce.HtmlEditor',
         },
         '->',
         {
-            text: 'Add',
-            iconCls: 'far fa-plus',
-            handler: function(btn)
-            {
-				var he = btn.up('helpedithtmlfile');
-                var tmce = he.down('tinymceeditor');
-                var cmb = he.down('combo');
-                he.addMode = true;
-                tmce.setValue('');
-                cmb.setHidden(true);
-                cmb.prev().setHidden(false); // 'New Document' label
-                btn.setHidden(true);
-                btn.next().setHidden(true);
-            }
-        },
-        {
-            text: 'Cancel',
-            iconCls: 'far fa-times',
-            hidden: true,
-            handler: function(btn)
-            {
-				var he = btn.up('helpedithtmlfile');
-                var cmb = he.down('combo');
-                delete he.addMode;
-                cmb.setHidden(false);
-                cmb.prev().setHidden(true); // 'New Document' label
-                btn.setHidden(true);
-                cmb.fireEvent('change', cmb, cmb.getValue());
-            }
-		},
-        {
             text: 'Save',
             iconCls: 'far fa-save',
             handler: function(btn)
             {
-				var he = btn.up('helpedithtmlfile');
+				var he = btn.up('tinymcehtmleditor');
 				var tmce = he.down('tinymceeditor');
                 var cmb = btn.prev('combo');
                 var fileName = cmb.getValue();
-                var fileTitle = cmb.getSelection().get('dsc');
 
 				var html = tmce.getValue();
-                        
-				function addToTree(tree)
-                {
-                    var childCfg = {
-                        text: cmb.getSelection().get('dsc'),
-                        file: fileName,
-                        title: fileTitle,
-                        leaf: true
-                    };
-                    var found = false;
-                    //var docNode = tree.getStore().getRoot().getChildAt(7);
-                    var userFolder = 'Docs by ';
-
-                    tree.getStore().getRoot().eachChild(function(c) {
-                        if (c.data.leaf !== true && c.data.text == docNode) {
-                            found = true;
-                            c.appendChild(Ext.create("Ext.data.TreeModel", childCfg));
-                        }
-                    });
-
-                    if (!found) {
-                        tree.getStore().getRoot().appendChild(Ext.create("Ext.data.TreeModel", {
-                            text: userFolder,
-                            leaf: false,
-                            children: [ childCfg ]
-                        }));
-                    }
-                }
 
                 function submit()
                 {
@@ -226,32 +154,11 @@ Ext.define('Ext.ux.tinymce.HtmlEditor',
                         success: function(response) 
                         {
                             ToolkitUtils.unmask(mask);
-                            if (he.addMode === true)
-                            {
-                                var tree = he.up('help').down('treepanel');
-                                var store = cmb.getStore();
-                                var rec = Ext.create('Ext.data.Model', {
-                                    file: fileName,
-                                    dsc: fileTitle
-                                });
-                                store.add(rec);
-                                cmb.ignoreChangeEvent = true;
-                                cmb.setSelection(rec);
-                                delete cmb.ignoreChangeEvent;
-                                cmb.setHidden(false);
-                                cmb.prev().setHidden(true);
-                                //
-                                // Add to doc tree
-                                //
-                                addToTree(tree);
-                            }
-                            delete he.addMode;
                             Utils.toast('Successfully saved document');
                         },
                         failure: function(response, opts) 
                         {
                             ToolkitUtils.unmask(mask);
-                            delete he.addMode;
                             Utils.handleAjaxError(response, opts, 'Could not save document');
                         },
                         params:
@@ -262,39 +169,14 @@ Ext.define('Ext.ux.tinymce.HtmlEditor',
                     });
                 }
                         
-                if (!he.addMode)
-                {
-                    if (!he.userDoc) {
-                        var msg = "Saving this document will overwrite the current version on the server.<br><br>" +
-                                "The development team should be informed of changes so that the source " +
-                                "repository can be updated.<br><br>Proceed?";
-                        Utils.promptYesNo(msg, function(mbtn) {
-                            if (mbtn == "yes") { 
-                                submit();
-                            }
-                        }, this);
-                    }
-                    else {
+                var msg = "Saving this document will overwrite the current version on the server.<br><br>" +
+                        "The development team should be informed of changes so that the source " +
+                        "repository can be updated.<br><br>Proceed?";
+                Utils.promptYesNo(msg, function(mbtn) {
+                    if (mbtn == "yes") { 
                         submit();
                     }
-                }
-                else
-                {
-                    Ext.create('Ext.ux.tinymce.InputWinOne',
-                    {
-                        title:'Enter the title for this document',
-                        ctl: he,
-                        fieldlabel: 'Document Title',
-                        fieldValue: '',
-                        onSaveClick: function(v) // scope editor panel
-                        {
-                            var userFolder = 'Docs_by_';
-                            fileTitle = v;
-                            fileName = 'resources/doc/user/' + userFolder + '/' + v.replace(/ /g, '_') + '.html';
-                            submit();
-                        }
-                    }).show();
-                }
+                }, this);
             }
 		}]
 	}],

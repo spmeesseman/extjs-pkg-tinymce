@@ -35,7 +35,7 @@ Ext.define('Ext.ux.tinymce.TinyMceEditor',
     //
 	editorLoaded:  function()
 	{
-		return Ext.tinymce.TinyMceEditor.sriptLoaded && this.wysiwygIntialized;
+		return Ext.ux.tinymce.TinyMceEditor.sriptLoaded && this.wysiwygIntialized;
 	},
 
     privates:
@@ -67,7 +67,7 @@ Ext.define('Ext.ux.tinymce.TinyMceEditor',
 
 	updateImagePath: function(v)
 	{
-		Ext.tinymce.TinyMceEditor.imgPath = v;
+		Ext.ux.tinymce.TinyMceEditor.imgPath = v;
 		return v;
 	},
 
@@ -113,7 +113,7 @@ Ext.define('Ext.ux.tinymce.TinyMceEditor',
 
 		images_upload_handler: function(blobInfo, success, failure)
 		{
-			var filename = Ext.tinymce.TinyMceEditor.imgPath + '/' + blobInfo.filename();
+			var filename = Ext.ux.tinymce.TinyMceEditor.imgPath + '/' + blobInfo.filename();
 			
 			Ext.Ajax.request(
 			{
@@ -154,7 +154,7 @@ Ext.define('Ext.ux.tinymce.TinyMceEditor',
     	//
     	// Load script
     	//
-    	if (!Ext.tinymce.TinyMceEditor.sriptLoaded)
+    	if (!Ext.ux.tinymce.TinyMceEditor.sriptLoaded)
     	{
     		new Ext.util.DelayedTask(function()
     		{
@@ -200,7 +200,7 @@ Ext.define('Ext.ux.tinymce.TinyMceEditor',
     {
     	var me = this;
 
-    	if (!Ext.tinymce.TinyMceEditor.sriptLoaded)
+    	if (!Ext.ux.tinymce.TinyMceEditor.sriptLoaded)
     	{
     		Utils.log("TinyMCE Editor - Script loaded");
     	}
@@ -246,7 +246,7 @@ Ext.define('Ext.ux.tinymce.TinyMceEditor',
     		}
     	}
 
-    	Ext.tinymce.TinyMceEditor.sriptLoaded = true;
+    	Ext.ux.tinymce.TinyMceEditor.sriptLoaded = true;
 
     	/*
     	 * ExtJs 6.5 - removed 'resize' event, need to now use onResize() override
@@ -271,7 +271,7 @@ Ext.define('Ext.ux.tinymce.TinyMceEditor',
     	var me = this;
     	me.callParent(arguments);
 
-    	if (!Ext.tinymce.TinyMceEditor.sriptLoaded)
+    	if (!Ext.ux.tinymce.TinyMceEditor.sriptLoaded)
     	{
     		return;
     	}
