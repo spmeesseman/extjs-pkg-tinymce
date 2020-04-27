@@ -74,3 +74,47 @@ February 6th, 2020
     
     The setValue() wrapper function does not work after the initial/first call.
 
+
+Version 1.1.0
+April 26th, 2020
+-------------------------------------------------------------------------------
+********************************************************************************
+***                                                                            *
+*** Verify that the following requirements have been satisfied:                *
+***                                                                            *
+*** Requirements:                                                              *
+*** -------------                                                              *
+***                                                                            *
+***    1.  Operating System            : Windows 7+                            * 
+***                                                                            *
+***    2.  CPU                         : 1.0+ GHz                              *
+***                                                                            *
+***    3.  RAM                         : 128 MB                                *
+***                                                                            *
+***    4.  ExtJS Core                  : 6.7+                                  *
+***                                                                            *
+********************************************************************************
+
+1.  Feature
+    
+    Add a full editor wrapper with save functionality.
+
+    The following view component has been added:
+
+        Ext.ux.tinymce.HtmlEditor
+
+2.  Documentation:  Readme
+    
+    Add all config options to the usage example.
+
+3.  Refactoring
+    
+    Add configurable callback for saving the currently loaded file.
+
+4.  Refactoring
+    
+    Modify editor toolbar to mimic other the editor packages (tinymce and
+    codemirror).
+
+
+
