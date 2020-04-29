@@ -70,12 +70,13 @@
         },
         "classic": {
             "classpath": [
+                "${package.dir}/src",
                 "${package.dir}/classic/src"
             ]
         },
         "modern": {
             "classpath": [
-                "${package.dir}/modern/src"
+                "${package.dir}/src"
             ]
         },
         "overrides": [
