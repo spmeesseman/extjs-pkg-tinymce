@@ -20,7 +20,9 @@ Ext.define('Ext.ux.tinymce.HtmlEditor',
     {
         saveCb: Ext.emptyFn,
         fileData: undefined,
-        defaultValue: undefined
+        defaultValue: undefined,
+        rawFileApiUrl: undefined,
+        rawFileApiParams: {}
     },
 
     publishes:
@@ -69,16 +71,6 @@ Ext.define('Ext.ux.tinymce.HtmlEditor',
             },
             listeners:
             {
-                //change: function(cmb, newvalue)
-                //{
-                //    Ext.Ajax.request({
-                //        url: 'resources/doc/' + newvalue + '?raw=true',
-                //        method: 'GET',
-                //        success: function(response) {
-                //            cmb.up('htmleditor').down('tinymceeditor').setValue(response.responseText);
-                //        }
-                //    });
-                //},
                 change: function(cmb, newvalue)
                 {
                     var he = cmb.up('tinymcehtmleditor');
@@ -107,13 +99,13 @@ Ext.define('Ext.ux.tinymce.HtmlEditor',
                         }
                     }
 
-                    Ext.Ajax.request({
-                        url: newvalue + '?rnd=' + Utils.getRandomNumber(),
+                    Ext.Ajax.request(Ext.apply({
+                        url: he.rawFileApiUrl || newvalue + '?rnd=' + Utils.getRandomNumber(),
                         method: 'GET',
                         success: function(response) {
                             setEditorValue(response.responseText);
                         }
-                    });
+                    }, he.rawFileApiUrl ? { params: he.rawFileApiParams } : {}));
                 }
             }
         },
