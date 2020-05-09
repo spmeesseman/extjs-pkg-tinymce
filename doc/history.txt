@@ -142,3 +142,29 @@ April 28th, 2020
     The new html editor component introduced in v1.1.0 breaks the modern
     application builds, and should be built with the classic toolkit only.
 
+
+Version 1.1.2
+May 8th, 2020
+-------------------------------------------------------------------------------
+********************************************************************************
+***                                                                            *
+*** Verify that the following requirements have been satisfied:                *
+***                                                                            *
+*** Requirements:                                                              *
+*** -------------                                                              *
+***                                                                            *
+***    1.  Operating System            : Windows 7+                            * 
+***                                                                            *
+***    2.  CPU                         : 1.0+ GHz                              *
+***                                                                            *
+***    3.  RAM                         : 128 MB                                *
+***                                                                            *
+***    4.  ExtJS Core                  : 6.7+                                  *
+***                                                                            *
+********************************************************************************
+
+1.  Bug Fix
+    
+    The file retrieval url is not configurable, and the static url used is no
+    longer working with ExtJsServer.
+
