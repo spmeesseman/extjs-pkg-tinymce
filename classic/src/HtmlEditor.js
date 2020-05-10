@@ -123,6 +123,7 @@ Ext.define('Ext.ux.tinymce.HtmlEditor',
                         path = cmb.getValue(),
                         content = tmce.getValue();
                     edr.saveCb(path, content, edr);
+                    edr.saved = true;
                 }
             }
 		}]
