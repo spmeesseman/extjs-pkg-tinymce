@@ -2,7 +2,11 @@ Ext.define('Ext.ux.tinymce.TinyMceEditor',
 {
     extend: 'Ext.form.TextArea',
     xtype: 'tinymceeditor',
- 
+	
+	requires: [
+		'Ext.ux.tinymce.Utils'
+	],
+
     /*
     Flag for tracking the initialization state
      */
@@ -139,7 +143,8 @@ Ext.define('Ext.ux.tinymce.TinyMceEditor',
 				},
 				failure: function(response, options) 
 				{
-					Utils.handleAjaxError(response, options, 'Could not save file', mask);
+					TinyMceUtils.unmask(mask);
+					Ext.Msg.alert('Could not save file');
 					failure();
 				}
 			});
@@ -158,7 +163,7 @@ Ext.define('Ext.ux.tinymce.TinyMceEditor',
     	{
     		new Ext.util.DelayedTask(function()
     		{
-    			me.editorLoadingMask = ToolkitUtils.mask(me, 'Loading editor...');
+    			me.editorLoadingMask = TinyMceUtils.mask(me, 'Loading editor...');
 
     			window.tinyMCEPreInit = 
     			{
@@ -189,7 +194,7 @@ Ext.define('Ext.ux.tinymce.TinyMceEditor',
     //
     onLoadError: function() 
     {
-    	Utils.logError("There was an error loading the TinyMCE script");
+    	TinyMceUtils.log("There was an error loading the TinyMCE script");
     },
 
 
@@ -202,10 +207,10 @@ Ext.define('Ext.ux.tinymce.TinyMceEditor',
 
     	if (!Ext.ux.tinymce.TinyMceEditor.sriptLoaded)
     	{
-    		Utils.log("TinyMCE Editor - Script loaded");
+    		TinyMceUtils.log("Script loaded");
     	}
 
-    	ToolkitUtils.unmask(me.editorLoadingMask);
+    	TinyMceUtils.unmask(me.editorLoadingMask);
 
     	me.on('blur', function (elm, ev, eOpts) 
     	{
@@ -232,7 +237,7 @@ Ext.define('Ext.ux.tinymce.TinyMceEditor',
     		}
     		else
     		{
-    			Utils.logError("TinyMCE Editor - Control element not found");
+    			TinyMceUtils.log("Control element not found");
     		}
     	}, me);
 
